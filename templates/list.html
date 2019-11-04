@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+  </head>
+  <body style="background-color: rgb(200,217,255)">
+    <div class="label">
+      <h1 style="color: rgb(0,7,109);text-align: center"> TODO-LIST App</h1>
+      <hr style="
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))" >
+      <h4 style="color: rgb(0,55,131);text-align: center"><i class="fas fa-check"></i> for Done/Strike-off<br><i class="far fa-trash-alt"></i> to Delete</h4>
+
+      <form style="text-align: center" action="/task" method="post">
+        <p><input style="width: 300px;font-size: 25px" type="text" name="content"></p>
+        <input style= "border-radius: 12px;background-color: white;
+  color: black;
+  border: 2px solid rgb(0,7,109);font-size: 16px;padding: 10px;
+  width: 120px" type="submit" value="Add task">
+      </form>
+         
+      <ol style="text-align: center; list-style-position: inside">
+        {% for task in tasks %}
+          <li>
+            {% if task.done %} <strike> {% endif %}{{ task.content }} {% if task.done %} </strike>{% endif %}
+              <a href="/done/{{ task.id }}"><i class="fas fa-check"></i></a>
+              <a href="/delete/{{ task.id }}"><i class="far fa-trash-alt"></i></a>
+          </li>
+        
+        {% endfor %}
+      </ol>
+    </div>
+
+  </body>
+</html>
